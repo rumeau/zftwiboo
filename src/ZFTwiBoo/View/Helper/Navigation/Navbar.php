@@ -273,29 +273,38 @@ class Navbar extends AbstractHelper
         }
         
         // add brand
-        $html .= "        " . $this->brand . "\n";
+        $html .= "            " . $this->brand . "\n";
+        
+        if ($this->responsive) {
+            $html .= "            <div class=\"nav-collapse collapse\">\n";
+        }
         
         $escapeLabels = true;
         if (isset($this->options['escapeLabels'])) {
             $escapeLabels = (bool) $this->options['escapeLabels'];
         }
         if ($this->container !== null) {
-            $html .= "        " . $this->view->plugin('navigation')->menu()->escapeLabels($escapeLabels) . "\n";
+            $html .= "            " . $this->view->plugin('navigation')->menu()->escapeLabels($escapeLabels) . "\n";
+        }
+        
+        if ($this->responsive) {
+            // close collapse
+            $html .= "            </div>\n";
         }
         
         if ($this->containerRight !== null) {
-            $html .= "        <div class=\"pull-right\">\n";
+            $html .= "            <div class=\"pull-right\">\n";
             if ($this->containerRight instanceof Navigation) {
-                $html .= "            " . $this->view->plugin('navigation')->setContainer()->menu($this->containerRight)->escapeLabels($escapeLabels) . "\n";
+                $html .= "                " . $this->view->plugin('navigation')->setContainer()->menu($this->containerRight)->escapeLabels($escapeLabels) . "\n";
             } else {
-                $html .= "            " . $this->containerRight;
+                $html .= "                " . $this->containerRight;
             }
-            $html .= "        </div>\n";
+            $html .= "            </div>\n";
         }
         
         if ($this->responsive) {
             // close .container
-            $html .= "        </div>";
+            $html .= "        </div>\n";
         }
         // close navbar
         $html .= "    </div>\n</div>";
