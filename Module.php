@@ -39,13 +39,15 @@ class Module
         
         $navigationHelpers = array(
             'invokables' => array(
-                'zftwiboomenu'   => 'ZFTwiBoo\View\Helper\Navigation\Menu',
-                'zftwiboonavbar' => 'ZFTwiBoo\View\Helper\Navigation\Navbar',
+                'zftwiboodropdown' => 'ZFTwiBoo\View\Helper\Navigation\Menu',
+                'zftwiboomenu'     => 'ZFTwiBoo\View\Helper\Navigation\Menu',
+                'zftwiboonavbar'   => 'ZFTwiBoo\View\Helper\Navigation\Navbar',
             ),
         );
         if ($configuration['zftwiboo']['override_zf_helpers']) {
-            $navigationHelpers['invokables']['menu']   = 'ZFTwiBoo\View\Helper\Navigation\Menu';
-            $navigationHelpers['invokables']['navbar'] = 'ZFTwiBoo\View\Helper\Navigation\Navbar';
+            $navigationHelpers['invokables']['dropdown'] = 'ZFTwiBoo\View\Helper\Navigation\Menu';
+            $navigationHelpers['invokables']['menu']     = 'ZFTwiBoo\View\Helper\Navigation\Menu';
+            $navigationHelpers['invokables']['navbar']   = 'ZFTwiBoo\View\Helper\Navigation\Navbar';
         }
         $navigationHelpers = new \Zend\ServiceManager\Config($navigationHelpers);
         

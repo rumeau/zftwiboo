@@ -75,6 +75,9 @@ class Navbar extends AbstractHelper
         // If is an array of pages, create the container
         if (is_array($container)) {
             $container = new Navigation($container);
+        } elseif ($container == false) {
+            $this->container = false;
+            return $this;
         }
         $this->setContainer($container);
         return $this;
@@ -283,7 +286,9 @@ class Navbar extends AbstractHelper
         if (isset($this->options['escapeLabels'])) {
             $escapeLabels = (bool) $this->options['escapeLabels'];
         }
-        if ($this->container !== null) {
+        if ($this->container === false) {
+            $html .= "";
+        } elseif ($this->container !== null) {
             $html .= "            " . $this->view->plugin('navigation')->menu()->escapeLabels($escapeLabels) . "\n";
         }
         
