@@ -30,11 +30,13 @@ class Module
             'invokables' => array(
                 'zftwiboolabel' => 'ZFTwiBoo\View\Helper\Label',
                 'zftwiboobadge' => 'ZFTwiBoo\View\Helper\Badge',
+                'zftwibooformcontrolgroup' => 'ZFTwiBoo\Form\View\Helper\FormControlGroup',
             ),
         );
         if ($configuration['zftwiboo']['use_main_namespace']) {
             $array['invokables']['label'] = 'ZFTwiBoo\View\Helper\Label';
             $array['invokables']['badge'] = 'ZFTwiBoo\View\Helper\Badge';
+            $array['invokables']['formcontrolgroup'] = 'ZFTwiBoo\Form\View\Helper\FormControlGroup';
         }
         
         $navigationHelpers = array(
