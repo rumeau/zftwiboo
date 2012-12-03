@@ -8,6 +8,8 @@ class FormControlGroup extends FormRow
 {
     protected $inputErrorClass = 'error';
     
+    protected $errorsContainerClass = 'help-block';
+    
     /**
      * Utility form helper that renders a control group compatible with 
      * Twitter Bootstrap
@@ -30,6 +32,7 @@ class FormControlGroup extends FormRow
         $controlGroupAttribs['class'] = 'control-group';
         if (!empty($elementErrors) && !empty($inputErrorClass)) {
             $controlGroupAttribs['class'] = $controlGroupAttribs['class'] . ' ' . $inputErrorClass;
+            $elementErrors   = '<div class="' . $this->errorsContainerClass . '">' . $elementErrors . '</div>';
         }
         
         // Add class for checkbox and radio elements
@@ -76,15 +79,16 @@ class FormControlGroup extends FormRow
                 $labelClose = $labelHelper->closeTag();
             }
             // Render label and element
-            $markup .= $labelOpen . $label . $labelClose . '<div class="controls">' . $elementString . '</div>';
+            $markup .= $labelOpen . $label . $labelClose . '<div class="controls">' . $elementString;
             // Render errors
             if ($this->renderErrors) {
                 $markup .= $elementErrors;
             }
+            $markup .= '</div>';
         } else {
             // Render the element without main label
             if ($this->renderErrors) {
-                $markup .= '<div class="controls">' . $elementString . '</div>' . $elementErrors;
+                $markup .= '<div class="controls">' . $elementString . $elementErrors . '</div>';
             } else {
                 $markup .= '<div class="controls">' . $elementString . '</div>';
             }
